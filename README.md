@@ -44,3 +44,38 @@ raysync.obserable.on('LS',function(res){
 })
 // 注意：不要多次注册同一事件
 ```
+#### 接口详情
+##### 1. login
+```javascript
+// login登陆命令，传输流程必须先调用登陆
+Raysync.login(accout,password)     //账号：account,密码：password。必须
+.then(function(res){               
+
+}
+).catch(function(res){
+
+})
+```
+##### 2. CreateWebSocket
+```javascript
+// CreateWebSocket 建立和传输客户端的连接
+Raysync.CreateWebSocket (accout,password)     //账号：account,密码：password。必须
+
+Raysync.obserable.on(‘webSocket’,function(){     //注册事件回调监听是否连接成功
+    // res.result      0:成功，非0：失败
+})
+
+```
+##### 3. getFileList
+```javascript
+// getFileList获取文件列表
+Raysync.getFileList(url)                       //url：服务器上文件路径
+
+Raysync.obserable.on(‘LS’,function(res){            //注册事件获取返回的列表信息
+    // res.result    状态，0为正常，非0失败  
+    // res.list       文件列表数据，包含name（文件名）,size（大小）,time（最后修改时间）,type（是否为文件夹）信息
+    // res.Dir       当前列表对应的服务器路径
+    // res.message  信息结果说明
+})
+
+```
