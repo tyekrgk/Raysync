@@ -1,7 +1,7 @@
 # Raysync
 镭速传输引擎JS-SDK
 
-跟新时间：2018-07-10
+更新时间：2018-07-10
 
 ### SDK
 
@@ -139,5 +139,5 @@ Raysync.obserable.on(‘GET_TRANS_COUNT’,function(res){      //注册事件回
 ##### 10. showTransferList
 ```javascript
 // showTransferList 打开传输列表
-Raysync.getTranscount()                                     // 无参数需求
+Raysync.showTransferList()                                     // 无参数需求
 ```
