@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src="./main.js"></script>
+    <script>
+        var raysync = new Raysync({ websocketServer: 'wss://localhost.raysync.io:9527', webServer: 'http://127.0.0.1:8090/api' })
+        raysync.obserable.on('LS',function(res){
+            console.log(res)
+        })
+    </script>
+
+    <style>
+        html,
+        body {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main_container {
+            width: 75rem;
+            margin: 0 auto;
+            border-left: 1px solid #999;
+            border-right: 1px solid #999;
+            padding: 3rem;
+        }
+
+        .pass {
+            color: green;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main_container">
+        <button class="pass" onclick="raysync.login('test','123456')">登录WEB</button>
+        <button class="pass" onclick="raysync.createWebSocket('test','123456')">链接客户端</button>
+        <button class="pass" onclick="raysync.getFileList('/')"> LS</button>
+        <button class="pass" onclick="raysync.upload(1,'/')">上传</button>
+        <button class="pass" onclick="raysync.download(['/DirectX修复工具'])">下载</button>
+    </div>
+</body>
+
+</html>
