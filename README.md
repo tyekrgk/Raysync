@@ -56,7 +56,7 @@ Raysync.login(accout,password)     //账号：account,密码：password。必须
 
 })
 ```
-##### 2. CreateWebSocket
+##### 2. createWebSocket
 ```javascript
 // CreateWebSocket 建立和传输客户端的连接
 Raysync.CreateWebSocket (accout,password,lang)     //账号：account,密码：password；lang:语言 'zh-CN'中文，'en-US'英文
