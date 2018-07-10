@@ -59,7 +59,7 @@ Raysync.login(accout,password)     //账号：account,密码：password。必须
 ##### 2. CreateWebSocket
 ```javascript
 // CreateWebSocket 建立和传输客户端的连接
-Raysync.CreateWebSocket (accout,password)     //账号：account,密码：password。必须
+Raysync.CreateWebSocket (accout,password,lang)     //账号：account,密码：password；lang:语言 'zh-CN'中文，'en-US'英文
 
 Raysync.obserable.on(‘webSocket’,function(){     //注册事件回调监听是否连接成功
     // res.result      0:成功，非0：失败
@@ -68,7 +68,7 @@ Raysync.obserable.on(‘webSocket’,function(){     //注册事件回调监听�
 ```
 ##### 3. getFileList
 ```javascript
-// getFileList获取文件列表
+// getFileList 获取文件列表
 Raysync.getFileList(url)                       //url：服务器上文件路径
 
 Raysync.obserable.on(‘LS’,function(res){            //注册事件获取返回的列表信息
@@ -78,4 +78,66 @@ Raysync.obserable.on(‘LS’,function(res){            //注册事件获取返�
     // res.message  信息结果说明
 })
 
+```
+##### 4. upload
+```javascript
+// upload 上传文件/文件夹
+Raysync.upload(type，uploadTo)                  //type：0：文件；1：文件夹
+                                                // uploadTo：上传至服务器路径
+
+```
+##### 5. download
+```javascript
+// download 下载文件/文件夹
+Raysync.download(list)                  //list：文件全路径组成的数组，
+// 如：
+[
+‘/test/a.html’,
+‘/test/b.js’
+]
+
+```
+##### 6. RM
+```javascript
+// RM 删除文件/文件夹
+Raysync.download(list)                  //list：文件全路径组成的数组，
+// 如：
+[
+‘/test/a.html’,
+‘/test/b.js’
+]
+
+```
+##### 7. MKdirRequest
+```javascript
+// MKdirRequest 新建文件夹
+Raysync.MKdirRequest(dir,url)                      //dir：新建文件夹名，url：服务器路径，即哪个目录//下新建
+
+Raysync.obserable.on(‘MKDIR’,function(res){        //注册事件回调监听是否新建成功
+    //res.result      0成功；非0失败
+})
+```
+##### 8. rename
+```javascript
+// rename 重命名
+Raysync.rename(oldname,newname)                     //oldname：新名，newname：旧名。以全路径形式传递，如：‘/test/a.html’更名‘/test/b.html’
+
+Raysync.obserable.on(‘rename’,function(res){        //注册事件回调监听是否成功
+    //res.result      0成功；非0失败
+})
+```
+##### 9. getTranscount
+```javascript
+// getTranscount 获取当前用户正在传输的任务数
+Raysync.getTranscount()                                    // 无参数需求
+
+Raysync.obserable.on(‘GET_TRANS_COUNT’,function(res){      //注册事件回调监听是否成功
+    //res.result      0成功；非0失败
+    //res.count      当前任务数
+})
+```
+##### 10. showTransferList
+```javascript
+// showTransferList 打开传输列表
+Raysync.getTranscount()                                     // 无参数需求
 ```
