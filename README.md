@@ -1,11 +1,9 @@
 # Raysync
 镭速传输引擎JS-SDK
 
-## 安装
-
 跟新时间：2018-07-10
 
-### SDK安装
+### SDK
 
 * [Github地址](https://github.com/yangyi000/Raysync/)
 * npm install raysync
@@ -16,7 +14,7 @@
 * 安装镭速传输引擎
 * ie11+，chrome 等支持websocket的浏览器
 
-#### 使用方式
+#### 安装
 * 浏览器引入：
 ``` javascript
 
