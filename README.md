@@ -44,6 +44,24 @@ raysync.obserable.on('LS',function(res){
 })
 // 注意：不要多次注册同一事件
 ```
+### 关于上传下载的使用
+在成功建立客户端连接后，需要对传输系统做目录切换定位操作，即调用`·getFileList(url`，
+此时`url` 即为后续上传文件的目标位置，在重新调用`getFileList`之前上传的文件都会在该目录下面，比如：
+```javascript
+Raysync.getFileList(‘/raysync/test’) ;此时会返回结果中的list目录为/raysync/test 目录下的文件列表，
+```
+此时调用`upload`上传文件会全部传至这个路径下面，如：
+```javascript
+Raysync.upload(type)  //type为上传类型：0：文件；1：文件夹
+```
+此时调用下载download接口对这个目录下的所有文件进行下载操作，如：
+```javascript
+Raysync.download([
+‘/raysync/test/a.html’,
+‘/raysync/test/b.html’,
+])
+```
+此时就可以下载到该目录下的`a.html`和`b.html`，如需下载其他路径下的文件，需调用`getFileList(url)`切换至目标位置，然后调用下载即可
 #### 接口详情
 ##### 1. login
 ```javascript
