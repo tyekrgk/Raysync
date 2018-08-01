@@ -119,7 +119,7 @@ Raysync.download(list)                  //list：文件全路径组成的数组�
 ##### 6. RM
 ```javascript
 // RM 删除文件/文件夹
-Raysync.download(list)                  //list：文件全路径组成的数组，
+Raysync.RM(list)                  //list：文件全路径组成的数组，
 // 如：
 [
 ‘/test/a.html’,
