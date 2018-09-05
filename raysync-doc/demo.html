@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="">
+    <link rel="stylesheet" href="">
+    <script type="text/javascript" src="./raysync.min.js"></script>
+    <script>
+        var login, raysync
+        window.onload = function () {
+            var log = document.getElementById('console');
+
+            raysync = new Raysync({
+                websocketServer: 'wss://localhost.raysync.io:9527',
+                webServer: 'http://127.0.0.1:8090/api'
+            })
+            var callback = function (res) {
+                var p = document.createElement('p')
+                p.innerHTML = JSON.stringify(res)
+                log.appendChild(p);
+            }
+            raysync.obserable.on('LS', function (res) {
+                callback(res);
+            });
+            raysync.obserable.on('webSocket', function (res) {
+                callback(res);
+            });
+            raysync.obserable.on('loginRaysync', function (res) {
+                callback(res);
+            });
+            login = function () {
+                raysync.login('test', '123456').then(function (res) {
+                    callback(res);
+                })
+            };
+            getServers = function () {
+                raysync.getServers('test', '123456').then(function (res) {
+                    callback(res);
+                })
+            }
+        }
+    </script>
+
+    <style>
+        html,
+        body {
+            font-size: 16px;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            height: 80px;
+            line-height: 80px;
+            margin: 0;
+        }
+
+        .main {
+            border: 1px solid #333;
+            min-height: calc(100vh - 110px);
+            box-sizing: border-box;
+            margin: 15px;
+            padding: 5px;
+            display: flex;
+            flex-flow: row;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .btns,
+        .raysync_webserver,
+        .raysync_client {
+            display: flex;
+            flex-flow: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        #console {
+            width: 50%;
+            background: #000;
+            color: #fff;
+            height: 100%;
+            min-height: calc(100vh - 110px);
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Raysync Web SDK Demo</h1>
+    <div class="main">
+        <div class="btns">
+            <div class="raysync_webserver">
+                <p>raysync webserver</p>
+                <button onclick="login()">登录WEB</button>
+                <button onclick="getServers()">获取传输服务器信息</button>
+            </div>
+            <div class="raysync_client">
+                <p>raysync client</p>
+                <button onclick="raysync.createWebSocket('test','123456')">链接客户端</button>
+                <button onclick="raysync.getFileList('/')"> LS</button>
+                <button onclick="raysync.upload(1,'/')">上传</button>
+                <button onclick="raysync.download(['/DirectX修复工具'])">下载</button>
+            </div>
+        </div>
+        <div id="console">
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
